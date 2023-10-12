@@ -74,13 +74,13 @@ const Login = () => {
                                     <div className="login_cboth"></div>
                                     <div className="login_sns">
                                         <p className="sns">
-                                            <Link to="#" target="_blank"><img src="../images/btn_naver_login.gif" alt='네이버로그인' /></Link>
+                                            <Link to="https://nid.naver.com/nidlogin.login?mode=form&url=https://www.naver.com/" target="_blank"><img src="../images/btn_naver_login.gif" alt='네이버로그인' /></Link>
                                         </p>
                                         <p className="sns">
-                                            <Link to="#" target="_blank"><img src="../images/btn_facebook_login.gif" alt='페이스북로그인' /></Link>
+                                            <Link to="http://www.facebook.com/" target="_blank"><img src="../images/btn_facebook_login.gif" alt='페이스북로그인' /></Link>
                                         </p>
                                         <p className="sns">
-                                            <Link to="#" target="_blank"><img src="../images/btn_kakao_login.gif" alt='카카오톡로그인' /></Link>
+                                            <Link to="https://accounts.kakao.com/login/?continue=https%3A%2F%2Faccounts.kakao.com%2Fweblogin%2Faccount%2Finfo#login" target="_blank"><img src="../images/btn_kakao_login.gif" alt='카카오톡로그인' /></Link>
                                         </p>
                                     </div>
                                     <div className="login_cboth"></div>
