@@ -3,10 +3,12 @@ import '../../pages/Cart/Cart.css';
 import CartHeader from '../../pages/Cart/CartHeader';
 import CartList from '../../pages/Cart/CartList';
 import CartTotal from '../../pages/Cart/CartTotal';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const Cart = ({ cart, convertPrice }) => {
+
+    const navigate = useNavigate()
 
     // 상태 관리할 state 추가
     const [cartState, setCartState] = useState(cart);
@@ -27,14 +29,14 @@ const Cart = ({ cart, convertPrice }) => {
     };
 
 
-   // 컴포넌트 마운트 후와 cart prop 변경 시 실행
+    // 컴포넌트 마운트 후와 cart prop 변경 시 실행
     useEffect(() => {
         setCartState(cart);   // 카트 상태 업데이트
         updateTotal();
     }, [cart]);
 
 
-   // 선택된 아이템 변경 시 실행
+    // 선택된 아이템 변경 시 실행
     //selectedItems 배열이 변경될 때마다 선택된 항목의 총 가격을 업데이트
     useEffect(() => {
         updateTotal(); // 선택된 아이템이 변경될 때마다 합계 업데이트
@@ -48,8 +50,8 @@ const Cart = ({ cart, convertPrice }) => {
         updateTotal();
     };
 
-//handleCheckAll: isAllChecked 상태를 토글하고 
-//selectedItems 배열을 그에 맞게 업데이트
+    //handleCheckAll: isAllChecked 상태를 토글하고 
+    //selectedItems 배열을 그에 맞게 업데이트
     const handleCheckAll = () => {
         setIsAllChecked(!isAllChecked);
         const updatedSelectedItems = !isAllChecked ? cartState.map((item) => item.id) : [];
@@ -66,7 +68,7 @@ const Cart = ({ cart, convertPrice }) => {
                     : item
             )
         );
-        updateTotal(); 
+        updateTotal();
     };
 
     // 수량 증가 -> 합계 변동
@@ -86,7 +88,7 @@ const Cart = ({ cart, convertPrice }) => {
         updateTotal(); // 상품 추가 시 선택한 아이템의 합계 업데이트
     };
 
-//calculateSelectedTotal: 선택된 모든 항목의 총 가격을 계산
+    //calculateSelectedTotal: 선택된 모든 항목의 총 가격을 계산
     const calculateSelectedTotal = () => {
         return selectedItems.reduce((total, itemId) => {
             const selectedItem = cartState.find((item) => item.id === itemId);
@@ -97,6 +99,10 @@ const Cart = ({ cart, convertPrice }) => {
         }, 0);
     };
 
+    //주문정보 저장 후 결제페이지로 이동
+    const handleCheckout = () => {
+        navigate('/checkout')
+    }
 
     return (
         <div className="Cart">
@@ -133,6 +139,8 @@ const Cart = ({ cart, convertPrice }) => {
                 convertPrice={convertPrice}
                 selectedItems={selectedItems} // 선택된 아이템 리스트 전달
                 selectedItemsTotal={selectedItemsTotal} // 선택된 아이템 합계 전달
+                onCheckout={handleCheckout}
+
             />
         </div>
     );
